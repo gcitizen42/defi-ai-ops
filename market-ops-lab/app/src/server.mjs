@@ -39,7 +39,9 @@ function getEnv(url) {
 }
 
 async function proxyJson(res, targetUrl) {
-  const response = await fetch(targetUrl, { headers: { accept: "application/json" } });
+  const response = await fetch(targetUrl, {
+    headers: { accept: "application/json" },
+  });
   const text = await response.text();
   res.writeHead(response.status, {
     "content-type": response.headers.get("content-type") || "application/json",
@@ -60,8 +62,13 @@ async function handleApi(req, res, url) {
     });
   }
 
-  if (url.pathname === "/api/markets") return proxyJson(res, `${base}/v1/markets`);
-  if (url.pathname === "/api/mids") return proxyJson(res, `${base}/v1/mids`);
+  if (url.pathname === "/api/markets") {
+    return proxyJson(res, `${base}/v1/markets`);
+  }
+
+  if (url.pathname === "/api/mids") {
+    return proxyJson(res, `${base}/v1/mids`);
+  }
 
   if (url.pathname === "/api/candles") {
     const market = url.searchParams.get("market") || "BTC-USD";
@@ -111,5 +118,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Robinhood Ops Arcus base app running at http://localhost:${port}`);
+  console.log(`Market Ops Lab Arcus base app running at http://localhost:${port}`);
 });
