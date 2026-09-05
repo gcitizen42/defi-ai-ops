@@ -1,6 +1,6 @@
 # Market Ops Lab
 
-Research and planning workspace for AI-assisted market operations across Arcus, Robinhood Chain, and adjacent crypto-market data sources.
+Tools and research for AI-assisted market operations across Arcus, Robinhood Chain, and related crypto-market data sources.
 
 Status: research and monitoring infrastructure, not an executable trading system.
 Date: 2026-07-26
@@ -23,12 +23,6 @@ Date: 2026-07-26
 - `docs/trading-control-center.md` - multi-avenue control center architecture and agent roles.
 - `docs/external-data-roadmap.md` - external data-source expansion plan.
 
-## Current Take
-
-The strongest version of the idea is not "AI places trades directly." It is an AI-assisted market operations engine that collects market/context data, builds structured memory, detects asymmetries, explains why they may exist, and only later graduates into controlled execution on testnet.
-
-That keeps the project close to the original Engine Asymmetry framing: AI-assisted research, blockchain analytics, workflow automation, structured data collection, SQLite, and graph-style knowledge representation.
-
 ## Requirements
 
 - Python 3.11+
@@ -39,7 +33,7 @@ That keeps the project close to the original Engine Asymmetry framing: AI-assist
 ## Collector Quick Start
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
+cd market-ops-lab
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r collector/requirements.txt
@@ -61,7 +55,7 @@ Never commit real API keys, wallet keys, or private account data.
 ## Local Market UI
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab/app
+cd market-ops-lab/app
 npm install
 npm start
 ```

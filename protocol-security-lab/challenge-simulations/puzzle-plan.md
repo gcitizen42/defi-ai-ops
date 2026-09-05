@@ -61,7 +61,7 @@ This is not a generic security audit. The working method is:
 Credentials exist in:
 
 ```text
-/Users/Citizen42/Desktop/TdaoUtils/AI-ops/Tenderly_simulations/.env
+protocol-security-lab/challenge-simulations/tenderly.env
 ```
 
 Expected keys:

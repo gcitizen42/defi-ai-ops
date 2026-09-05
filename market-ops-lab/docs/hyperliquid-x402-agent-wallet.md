@@ -53,7 +53,7 @@ Do not query balances or positions with the agent wallet address, because it can
 Operational plan:
 
 1. Create a fresh Hyperliquid API wallet from `https://app.hyperliquid.xyz/API`.
-2. Name it for this project, for example `robinhood-ops-hermes`.
+2. Name it for this project, for example `defi-ai-ops-collector`.
 3. Store only the public account address at first.
 4. Keep the API wallet private key out of git and outside chat.
 5. Start with public data and paper orders.
@@ -144,4 +144,3 @@ No live agent execution until:
 - https://docs.x402.org/core-concepts/wallet
 - https://docs.cdp.coinbase.com/x402/welcome
 - https://docs.cdp.coinbase.com/agentic-wallet/cli/welcome
-

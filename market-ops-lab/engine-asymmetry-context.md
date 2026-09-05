@@ -2,7 +2,7 @@
 
 ## Local Evidence Found
 
-The repo does not currently contain a standalone `AI ops` folder. A broader scan under `/Users/Citizen42/Documents` did not surface a matching `AI ops` directory before the scan was stopped.
+The original notes were later consolidated into the current `defi-ai-ops` workspace.
 
 Confirmed local references appear in CV/work-positioning files:
 

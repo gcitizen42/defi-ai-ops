@@ -10,7 +10,7 @@ Python collectors and analysis helpers for public market data, wallet context, a
 ## Setup
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
+cd market-ops-lab
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r collector/requirements.txt

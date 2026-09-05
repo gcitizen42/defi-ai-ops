@@ -25,7 +25,7 @@ Required Python package:
 Install:
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
+cd market-ops-lab
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r collector/requirements.txt
@@ -104,7 +104,7 @@ Move to PostgreSQL + TimescaleDB later when:
 One REST sync:
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
+cd market-ops-lab
 source .venv/bin/activate
 python3 collector/arcus_collector.py --once
 ```

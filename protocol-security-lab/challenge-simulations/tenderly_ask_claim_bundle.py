@@ -6,7 +6,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-ENV_FILE = Path("/Users/Citizen42/Desktop/TdaoUtils/AI-ops/Tenderly_simulations/.env")
+ENV_FILE = Path(__file__).with_name("tenderly.env")
 USER = "0x3070f20f86fda706ac380f5060d256028a46ec29"
 ASK = "0xa0096d95daaa3cf19091c0f0627b3913c2e417ae"
 BOUNTY = "0xAAB498e3974F7543724602604f4EC6c44867FC72"

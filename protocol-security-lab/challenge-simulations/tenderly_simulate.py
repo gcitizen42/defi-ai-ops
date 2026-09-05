@@ -7,9 +7,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-DEFAULT_ENV_FILE = "/Users/Citizen42/Desktop/TdaoUtils/AI-ops/Tenderly_simulations/.env"
-DEFAULT_FROM = "0x3070f20f86fda706ac380f5060d256028a46ec29"
-VAULT = "0x0596702Ae60A2b27593a89F2E69855817E1f2CC2"
+DEFAULT_ENV_FILE = Path(__file__).with_name("tenderly.env")
 
 
 def read_env(path):
@@ -31,17 +29,17 @@ def cast_calldata(signature, *args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run a Tenderly simulation for a challenge transaction.")
-    parser.add_argument("--env-file", default=DEFAULT_ENV_FILE)
-    parser.add_argument("--from", dest="sender", default=DEFAULT_FROM)
-    parser.add_argument("--to", default=VAULT)
+    parser = argparse.ArgumentParser(description="Run a transaction in a Tenderly simulation project.")
+    parser.add_argument("--env-file", default=str(DEFAULT_ENV_FILE))
+    parser.add_argument("--from", dest="sender", required=True)
+    parser.add_argument("--to", required=True)
     parser.add_argument("--input", help="Raw calldata. If omitted, --vault-secret is used.")
     parser.add_argument("--value", default="0")
     parser.add_argument("--gas", type=int, default=1_000_000)
     parser.add_argument("--save", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--vault-secret", help="Text secret candidate for Vault.unlock(bytes,address).")
     parser.add_argument("--vault-secret-hex", help="Hex bytes secret candidate for Vault.unlock(bytes,address).")
-    parser.add_argument("--recipient", default=DEFAULT_FROM)
+    parser.add_argument("--recipient", help="Recipient for Vault.unlock; defaults to --from.")
     args = parser.parse_args()
 
     env = read_env(args.env_file)
@@ -58,7 +56,7 @@ def main():
             secret_hex = args.vault_secret_hex
         else:
             raise SystemExit("Provide --input, --vault-secret, or --vault-secret-hex")
-        tx_input = cast_calldata("unlock(bytes,address)", secret_hex, args.recipient)
+        tx_input = cast_calldata("unlock(bytes,address)", secret_hex, args.recipient or args.sender)
 
     payload = {
         "save": args.save,

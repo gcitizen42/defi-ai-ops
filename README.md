@@ -1,39 +1,30 @@
 # DeFi AI Ops
 
-A practical workspace for DeFi research, AI-assisted market monitoring, protocol simulations, and small operations tools.
+A practical toolbox for DeFi market research, on-chain analytics, protocol simulations, and AI-assisted operations.
 
-## What’s Inside
+## Toolbox
 
-### `market-ops-lab/`
+| Tool | What it does | Access |
+| --- | --- | --- |
+| [Arcus collector](market-ops-lab/collector/arcus_collector.py) | Stores market, candle, trade, and order-book data in SQLite. | Public data; optional API access |
+| [Hyperliquid context](market-ops-lab/collector/hyperliquid_context.py) | Captures perps liquidity, funding, open interest, and trade-flow context. | Public data |
+| [CoinGecko context](market-ops-lab/collector/coingecko_context.py) | Adds crypto prices, volume, market cap, and short history. | Public data; optional API key |
+| [Present analog model](market-ops-lab/collector/spot_present_analog.py) | Finds similar historical market states and compares later outcomes. | Research model |
+| [Paper-trade monitor](market-ops-lab/collector/paper_trade_watch.py) | Tests entries, targets, stops, spread, and slippage without placing trades. | Simulation only |
+| [Safe history exporter](references/gnosis-safe-stats/safe_history_rawdata.py) | Exports Safe multisig history to CSV with optional gas data. | Public data; optional RPC |
+| [Tenderly simulator](protocol-security-lab/challenge-simulations/tenderly_simulate.py) | Runs a transaction against a Tenderly simulation project. | Simulation credentials required |
 
-Market research and monitoring work around Arcus, Robinhood Chain, and related crypto-market data sources.
+See the [toolbox guide](toolbox/README.md) for commands and requirements.
 
-Includes:
+## Project Areas
 
-- Python collectors for public market/context data
-- Paper-trade and signal-testing scripts
-- Local SQLite storage
-- A small local Arcus market UI
-- Research notes and planning docs
+- [`market-ops-lab/`](market-ops-lab/) - collectors, analysis models, paper simulations, and a local market UI.
+- [`protocol-security-lab/`](protocol-security-lab/) - simulation-first smart-contract security research.
+- [`references/`](references/) - older work kept for learning, including Safe analytics and Alpha Challenge material.
 
-### `protocol-security-lab/`
+## Quick Start
 
-Simulation-first protocol security research.
-
-Includes:
-
-- Local fork and Tenderly simulation notes
-- Source snapshots used for analysis
-- Scripts for contract-state review
-- Challenge research notes kept for learning and reference
-
-### `references/`
-
-Useful older material kept as reference, including Safe analytics scripts and challenge-study tooling.
-
-## Setup
-
-Install collector dependencies:
+Install the market-tool dependencies:
 
 ```bash
 cd market-ops-lab
@@ -51,7 +42,7 @@ python3 collector/arcus_collector.py --once --rest-only
 Run the local market UI:
 
 ```bash
-cd market-ops-lab/app
+cd app
 npm install
 npm start
 ```
@@ -60,6 +51,6 @@ Then open `http://localhost:4173`.
 
 ## Security
 
-This repo is for research and local tooling. Do not commit API keys, wallet keys, seed phrases, `.env` files, SQLite databases, generated build output, or personal documents.
+This repository is for research and local tooling. It does not place live trades by default.
 
-Use the `*.env.example` files as templates and keep real values locally only.
+Do not commit API keys, wallet keys, seed phrases, `.env` files, SQLite databases, generated build output, or personal documents. Use the `*.env.example` files as templates and keep real values locally only.

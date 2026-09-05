@@ -37,7 +37,7 @@ Zerion is for wallet state, not order-book prediction:
 ## Command
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
+cd market-ops-lab
 source .venv/bin/activate
 python3 collector/zerion_context.py
 ```

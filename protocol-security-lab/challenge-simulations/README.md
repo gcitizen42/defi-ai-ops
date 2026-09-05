@@ -35,7 +35,20 @@ Keep real values outside this repository.
 
 ## Setup
 
-Use a Tenderly vnet RPC:
+Create a local Tenderly settings file when using the Python simulator:
+
+```bash
+cd protocol-security-lab/challenge-simulations
+cp tenderly.env.example tenderly.env
+python3 tenderly_simulate.py \
+  --from 0xYOUR_SENDER \
+  --to 0xTARGET_CONTRACT \
+  --input 0xCALLDATA
+```
+
+`tenderly.env` is ignored by git. The command simulates the transaction and does not broadcast it.
+
+For the historical challenge helpers, use a Tenderly virtual-network RPC:
 
 ```bash
 export TENDERLY_RPC_URL="https://..."
