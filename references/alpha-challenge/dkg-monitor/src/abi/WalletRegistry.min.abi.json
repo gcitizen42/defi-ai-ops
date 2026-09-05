@@ -1,0 +1,51 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bytes32", "name": "resultHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "uint256", "name": "seed", "type": "uint256" },
+      {
+        "indexed": false,
+        "internalType": "struct WalletRegistry.DKGResult",
+        "name": "result",
+        "type": "tuple",
+        "components": [
+          { "internalType": "uint32", "name": "submitterMemberIndex", "type": "uint32" },
+          { "internalType": "address[]", "name": "members", "type": "address[]" },
+          { "internalType": "bytes", "name": "signatures", "type": "bytes" },
+          { "internalType": "bytes", "name": "misbehavedMembersIndices", "type": "bytes" }
+        ]
+      }
+    ],
+    "name": "DkgResultSubmitted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bytes32", "name": "resultHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "address", "name": "approver", "type": "address" }
+    ],
+    "name": "DkgResultApproved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bytes32", "name": "resultHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "address", "name": "challenger", "type": "address" },
+      { "indexed": false, "internalType": "uint8", "name": "reason", "type": "uint8" }
+    ],
+    "name": "DkgResultChallenged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bytes", "name": "walletPubKey", "type": "bytes" },
+      { "indexed": false, "internalType": "address[]", "name": "members", "type": "address[]" }
+    ],
+    "name": "WalletRegistered",
+    "type": "event"
+  }
+]

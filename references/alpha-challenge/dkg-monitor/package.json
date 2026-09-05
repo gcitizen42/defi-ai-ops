@@ -1,0 +1,21 @@
+{
+  "name": "dkg-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dkg": "ts-node --esm src/dkg-cli.ts",
+    "history": "ts-node --esm src/history.ts",
+    "live": "ts-node --esm src/dkg-cli.ts live",
+    "live:ws": "ts-node --esm src/live.ts",
+    "live:poll": "ts-node --esm src/live_polling.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.12.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

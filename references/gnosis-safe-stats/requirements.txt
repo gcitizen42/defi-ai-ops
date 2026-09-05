@@ -1,0 +1,6 @@
+safe-eth-py>=7.3.0
+eth-utils>=5.0
+maya>=0.6
+tabulate>=0.9
+requests>=2.31
+web3>=6.0

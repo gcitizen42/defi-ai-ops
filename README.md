@@ -19,6 +19,11 @@ Organized workspace for DeFi research, market-operations prototypes, and simulat
 
 - `archive/` - local-only material that should not be synced to GitHub. The archived CV work was moved here because it is personal rather than part of the DeFi/AI-ops project surface.
 
+### Consolidated References
+
+- `references/alpha-challenge/` - preserved Wintermute Alpha Challenge prompts and the DKG monitor tooling from the older `Alpha-Challenge-C42` repo.
+- `references/gnosis-safe-stats/` - cleaned Gnosis Safe analytics scripts and docs from the older `gnosis-safe-stats` repo.
+
 ## Setup
 
 Install collector dependencies:
@@ -59,3 +64,7 @@ Before pushing to GitHub:
 3. Run the secret scan command from `SECURITY.md`.
 4. Commit with a clear message.
 5. Push to the configured GitHub remote.
+
+## GitHub Profile Strategy
+
+This repository is intended to be the main public technical hub for the account. Older one-off, training, empty, or fork-only repositories can be archived once their useful material has been consolidated here.
