@@ -96,6 +96,7 @@ def print_notification(reason, ticker, price, pnl_usd, pnl_pct):
 
 def main():
     args = parse_args()
+    validate_args(args)
     base_url = REST_URLS[args.env]
     conn = connect_db(args.db)
     started_at = now_ns()
@@ -217,6 +218,21 @@ def parse_args():
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--interval", type=float, default=5.0)
     return parser.parse_args()
+
+
+def validate_args(args):
+    if args.notional <= 0:
+        raise SystemExit("--notional must be greater than zero.")
+    if args.target_pct <= 0:
+        raise SystemExit("--target-pct must be greater than zero.")
+    if args.stop_pct <= 0:
+        raise SystemExit("--stop-pct must be greater than zero.")
+    if args.trailing_pct is not None and args.trailing_pct <= 0:
+        raise SystemExit("--trailing-pct must be greater than zero when provided.")
+    if args.timeout <= 0:
+        raise SystemExit("--timeout must be greater than zero.")
+    if args.interval <= 0:
+        raise SystemExit("--interval must be greater than zero.")
 
 
 if __name__ == "__main__":

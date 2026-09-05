@@ -185,6 +185,7 @@ async def main_async(args):
     except ImportError:
         raise SystemExit("Missing dependency. Run: python3 -m pip install -r collector/requirements.txt")
 
+    validate_args(args)
     validate_preflight(args)
 
     ws_url = ENVIRONMENTS[args.env]
@@ -252,7 +253,8 @@ async def main_async(args):
                 immediate_exit = exit_price_from_book(args.side, book, fill["quantity"])
                 immediate_pnl = pnl(args.side, fill["avg_price"], immediate_exit, fill["quantity"]) if immediate_exit else None
                 immediate_pnl_bps = immediate_pnl / args.notional * 10_000 if immediate_pnl is not None else None
-                print(f"feasibility spread={spread_bps:.3f} bps immediate_exit={immediate_pnl_bps:.3f} bps")
+                immediate_label = f"{immediate_pnl_bps:.3f} bps" if immediate_pnl_bps is not None else "unavailable"
+                print(f"feasibility spread={spread_bps:.3f} bps immediate_exit={immediate_label}")
                 if spread_bps > args.max_spread_bps:
                     raise SystemExit(f"Rejected: spread {spread_bps:.3f} bps > max {args.max_spread_bps:.3f} bps")
                 if immediate_pnl_bps is not None and immediate_pnl_bps <= -abs(args.max_entry_exit_loss_bps):
@@ -343,10 +345,13 @@ async def main_async(args):
     conn.commit()
     conn.close()
 
-    print(
-        f"CLOSE {exit_reason or 'interrupted'} at {exit_price:.8f}; "
-        f"gross pnl=${gross_pnl:.5f} ({gross_pnl_bps:.3f} bps)"
-    )
+    if exit_price is None or gross_pnl is None or gross_pnl_bps is None:
+        print(f"CLOSE {exit_reason or 'interrupted'} before a markable exit price was available")
+    else:
+        print(
+            f"CLOSE {exit_reason or 'interrupted'} at {exit_price:.8f}; "
+            f"gross pnl=${gross_pnl:.5f} ({gross_pnl_bps:.3f} bps)"
+        )
 
 
 def parse_args():
@@ -367,6 +372,23 @@ def parse_args():
     parser.add_argument("--max-spread-bps", type=float, default=5.0)
     parser.add_argument("--max-entry-exit-loss-bps", type=float, default=5.0)
     return parser.parse_args()
+
+
+def validate_args(args):
+    if args.notional <= 0:
+        raise SystemExit("--notional must be greater than zero.")
+    if args.target_bps <= 0:
+        raise SystemExit("--target-bps must be greater than zero.")
+    if args.stop_bps <= 0:
+        raise SystemExit("--stop-bps must be greater than zero.")
+    if args.timeout <= 0:
+        raise SystemExit("--timeout must be greater than zero.")
+    if args.levels <= 0:
+        raise SystemExit("--levels must be greater than zero.")
+    if args.max_spread_bps <= 0:
+        raise SystemExit("--max-spread-bps must be greater than zero.")
+    if args.max_entry_exit_loss_bps <= 0:
+        raise SystemExit("--max-entry-exit-loss-bps must be greater than zero.")
 
 
 if __name__ == "__main__":
