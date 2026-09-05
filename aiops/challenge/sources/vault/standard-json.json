@@ -1,0 +1,11 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "src/Vault.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\n\n/// @title Vault - the sealed pool.\n/// It only grows: Fork mints and Lineage increments flow in. It is locked by a hash;\n/// the secret is held off-chain by the steward, so nothing on-chain names its future.\n/// One day the steward decides where \"Lost\" becomes \"Found\" - or builds something\n/// permissionless on top of it. Until then, it simply accumulates in plain sight.\ncontract Vault {\n    bytes32 public immutable SEAL; // keccak256(secret), the secret kept off-chain\n    bool public found;\n\n    event Funded(address indexed from, uint256 amount);\n    event Found(address indexed to, uint256 amount);\n\n    constructor(bytes32 seal_) {\n        SEAL = seal_;\n    }\n\n    receive() external payable {\n        emit Funded(msg.sender, msg.value);\n    }\n\n    function state() external view returns (string memory) {\n        return found ? \"Found\" : \"Lost\";\n    }\n\n    /// the on-chain readme. a subtle nudge, never an address: whoever wants the rest\n    /// follows the hands that fill it.\n    function rules() external pure returns (string memory) {\n        return \"Lost. a pool that only grows, sealed by a hash: its preimage opens it once, to a destination chosen that day. one of a set. read the hands that fill it.\";\n    }\n\n    function balance() external view returns (uint256) {\n        return address(this).balance;\n    }\n\n    /// whoever holds the secret decides, once, where the pool goes.\n    function unlock(bytes calldata secret, address payable to) external {\n        require(!found, \"found\");\n        require(keccak256(secret) == SEAL, \"wrong key\");\n        found = true;\n        uint256 bal = address(this).balance;\n        (bool ok,) = to.call{value: bal}(\"\");\n        require(ok, \"send\");\n        emit Found(to, bal);\n    }\n}\n"
+    },
+    "settings.json": {
+      "content": "{\"optimizer\":{\"enabled\":true,\"runs\":200},\"metadata\":{\"useLiteralContent\":false,\"bytecodeHash\":\"ipfs\",\"appendCBOR\":true},\"outputSelection\":{\"*\":{\"*\":[\"evm.bytecode\",\"evm.deployedBytecode\",\"devdoc\",\"userdoc\",\"metadata\",\"abi\"]}},\"evmVersion\":\"cancun\",\"viaIR\":false}"
+    }
+  }
+}

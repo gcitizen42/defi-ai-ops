@@ -1,0 +1,19 @@
+{
+  "user": "0x3070f20f86fda706ac380f5060d256028a46ec29",
+  "steward": "0x3567dBd98fe316408C7ebAB6Ac6B12a0F27A7ed5",
+  "art": "0xa01a0386b0fb47296C52d5d2492Fbe01BfDa85B8",
+  "bounties": "0xAAB498e3974F7543724602604f4EC6c44867FC72",
+  "vault": "0x0596702Ae60A2b27593a89F2E69855817E1f2CC2",
+  "pieces": {
+    "bequeath": "0x4332bd627c7712718d5373ce9d6c6bced6338a0e",
+    "ratchet": "0x792ebdc632bbd4d41f2521ffb502d2424b1f2338",
+    "fork": "0x4f33e5aa6d6c83e0bd32887b3a65a6d26e28b57b",
+    "pyre": "0x8423322212ac399750c59de51b22ed7d77048150",
+    "ask": "0xa0096d95daaa3cf19091c0f0627b3913c2e417ae",
+    "lineage": "0x7392197b936a0b3d3e3734a48aca3c9b2682098f",
+    "tug": "0x6c6fc769cd751632accc23f9335a72c26a7551df",
+    "byMe": "0x7c5f5c915f44924400649a18bdaf1f9dad68ea2c",
+    "proofOfLife": "0x4ab5E5DFB8D1B6C7ca94E5cd35Eaa2f4a6f3B0f8",
+    "verb": "0x5cFC192ecA0d530E9ec6a8c8Ca7b33d8E35D2A07"
+  }
+}

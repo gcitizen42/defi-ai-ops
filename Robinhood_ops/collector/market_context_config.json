@@ -1,0 +1,47 @@
+{
+  "clusters": {
+    "crypto_beta": {
+      "leaders": ["BTC-USD", "ETH-USD", "SOL-USD"],
+      "members": ["BTC", "ETH", "SOL", "COIN", "MSTR", "HYPE", "DYDX"]
+    },
+    "btc_equity_proxy": {
+      "leaders": ["BTC-USD"],
+      "members": ["COIN", "MSTR"]
+    },
+    "ai_semis": {
+      "leaders": ["NVDA-USD", "AMD-USD", "MU-USD", "QQQ-USD"],
+      "members": ["NVDA", "AMD", "MU", "SMCI", "QQQ"]
+    },
+    "megacap_tech": {
+      "leaders": ["AAPL-USD", "MSFT-USD", "GOOGL-USD", "AMZN-USD", "META-USD", "QQQ-USD"],
+      "members": ["AAPL", "MSFT", "GOOGL", "AMZN", "META", "QQQ", "SPY"]
+    },
+    "metals_energy": {
+      "leaders": ["GLD-USD", "SLV-USD", "USO-USD"],
+      "members": ["GLD", "SLV", "USO"]
+    }
+  },
+  "perps_proxy_markets": [
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+    "COIN-USD",
+    "MSTR-USD",
+    "NVDA-USD",
+    "AMD-USD",
+    "MU-USD",
+    "QQQ-USD",
+    "SPY-USD",
+    "AAPL-USD",
+    "MSFT-USD",
+    "GOOGL-USD",
+    "GLD-USD",
+    "SLV-USD",
+    "USO-USD"
+  ],
+  "news_feeds": [
+    "https://www.coindesk.com/arc/outboundfeeds/rss/",
+    "https://cointelegraph.com/rss",
+    "https://www.sec.gov/news/pressreleases.rss"
+  ]
+}

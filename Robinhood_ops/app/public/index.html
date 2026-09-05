@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robinhood Ops - Arcus Markets</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Arcus Markets</h1>
+        <p id="status">Loading market universe...</p>
+      </div>
+      <div class="controls">
+        <select id="env">
+          <option value="mainnet">Mainnet</option>
+          <option value="testnet">Testnet</option>
+        </select>
+        <button id="refresh" type="button">Refresh</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel markets-panel">
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search markets" />
+          <select id="category">
+            <option value="">All categories</option>
+          </select>
+          <select id="marketStatus">
+            <option value="">All statuses</option>
+            <option value="ONLINE">Online</option>
+            <option value="OFFLINE">Offline</option>
+          </select>
+        </div>
+        <div id="summary" class="summary"></div>
+        <div id="marketList" class="market-list"></div>
+      </section>
+
+      <section class="panel detail-panel">
+        <div class="detail-header">
+          <div>
+            <h2 id="selectedName">No market selected</h2>
+            <p id="selectedMeta">Select a market to inspect chart, order book, and REST data.</p>
+          </div>
+          <button id="copySymbol" type="button">Copy symbol</button>
+        </div>
+
+        <div class="tiles">
+          <div class="tile">
+            <span>Mark</span>
+            <strong id="markPrice">-</strong>
+          </div>
+          <div class="tile">
+            <span>Oracle</span>
+            <strong id="oraclePrice">-</strong>
+          </div>
+          <div class="tile">
+            <span>24h Volume</span>
+            <strong id="volume24h">-</strong>
+          </div>
+          <div class="tile">
+            <span>Open Interest</span>
+            <strong id="openInterest">-</strong>
+          </div>
+        </div>
+
+        <div class="split">
+          <section>
+            <h3>Chart</h3>
+            <canvas id="chart" width="720" height="260"></canvas>
+            <div id="chartInfo" class="muted">Waiting for candles...</div>
+          </section>
+          <section>
+            <h3>Order Book</h3>
+            <div class="book">
+              <div>
+                <h4>Bids</h4>
+                <table>
+                  <tbody id="bids"></tbody>
+                </table>
+              </div>
+              <div>
+                <h4>Asks</h4>
+                <table>
+                  <tbody id="asks"></tbody>
+                </table>
+              </div>
+            </div>
+            <div id="bookInfo" class="muted">Waiting for L2 snapshots...</div>
+          </section>
+        </div>
+
+        <section>
+          <h3>REST Snapshot</h3>
+          <pre id="restSnapshot">{}</pre>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

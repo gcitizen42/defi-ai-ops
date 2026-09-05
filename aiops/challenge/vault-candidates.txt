@@ -1,0 +1,63 @@
+# Basic words and rule fragments
+Lost
+lost
+Found
+found
+Vault
+vault
+secret
+preimage
+one of a set
+read the hands
+read the hands that fill it
+the hands that fill it
+hands that fill it
+whoever wants the rest follows the hands that fill it
+Lost. a pool that only grows, sealed by a hash: its preimage opens it once, to a destination chosen that day. one of a set. read the hands that fill it.
+
+# Piece names
+Bequeath
+Ratchet
+Fork
+Pyre
+Ask
+Lineage
+Tug
+By Me
+Proof of Life
+Verb
+Lost
+bequeath
+ratchet
+fork
+pyre
+ask
+lineage
+tug
+by me
+proof of life
+verb
+lost
+
+# Funding hands / contracts
+0x92E5D4582d2DaAeC18a8ebCa7ED5341f4183557a
+0x92e5d4582d2daaec18a8ebca7ed5341f4183557a
+0x6b77136442bBd008fF2E185Bda819cD7ba367e96
+0x6b77136442bbd008ff2e185bda819cd7ba367e96
+0x3567dBd98fe316408C7ebAB6Ac6B12a0F27A7ed5
+0x3567dbd98fe316408c7ebab6ac6b12a0f27a7ed5
+0x4f33E5AA6D6c83E0bD32887b3A65A6d26e28B57b
+0x4f33e5aa6d6c83e0bd32887b3a65a6d26e28b57b
+0x7392197B936a0b3d3E3734a48acA3C9b2682098F
+0x7392197b936a0b3d3e3734a48aca3c9b2682098f
+0x0596702Ae60A2b27593a89F2E69855817E1f2CC2
+0x0596702ae60a2b27593a89f2e69855817e1f2cc2
+
+# Observed blocks and values
+25870436
+25870442
+25871204
+25871543
+10000000000000000
+200000000000000000
+210000000000000000

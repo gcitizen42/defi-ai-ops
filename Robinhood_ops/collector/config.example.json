@@ -1,0 +1,14 @@
+{
+  "environment": "mainnet",
+  "database": "../data/arcus.sqlite",
+  "markets": ["BTC-USD", "ETH-USD", "SOL-USD", "SPY-USD", "QQQ-USD", "NVDA-USD", "AAPL-USD"],
+  "timeframes": ["1m"],
+  "orderbook_levels": 12,
+  "rest_sync_interval_seconds": 60,
+  "websocket_reconnect_seconds": 5,
+  "collect_websocket": true,
+  "collect_trades": true,
+  "collect_bbo": true,
+  "collect_l2_orderbook": true,
+  "collect_candles": true
+}

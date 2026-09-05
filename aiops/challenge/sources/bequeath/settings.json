@@ -1,0 +1,1 @@
+{"optimizer":{"enabled":true,"runs":200},"metadata":{"useLiteralContent":false,"bytecodeHash":"ipfs","appendCBOR":true},"outputSelection":{"*":{"*":["evm.bytecode","evm.deployedBytecode","devdoc","userdoc","metadata","abi"]}},"evmVersion":"cancun","viaIR":false}
