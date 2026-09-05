@@ -1,6 +1,6 @@
 import http from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
+import { extname, join, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -85,7 +85,7 @@ async function handleApi(req, res, url) {
 async function serveStatic(res, pathname) {
   const cleanPath = pathname === "/" ? "/index.html" : pathname;
   const filePath = normalize(join(publicDir, cleanPath));
-  if (!filePath.startsWith(publicDir)) {
+  if (filePath !== publicDir && !filePath.startsWith(`${publicDir}${sep}`)) {
     res.writeHead(403);
     res.end("Forbidden");
     return;
