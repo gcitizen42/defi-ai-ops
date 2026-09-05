@@ -36,10 +36,10 @@ yarn-error.log*
 cache/
 out/
 broadcast/
-aiops/challenge/*result.json
-aiops/challenge/*results.json
+protocol-security-lab/challenge-simulations/*result.json
+protocol-security-lab/challenge-simulations/*results.json
+protocol-security-lab/challenge-simulations/*.generated.txt
 
 # Local-only archive and OS files
 archive/*
-!archive/README.md
 .DS_Store
