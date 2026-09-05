@@ -1,38 +1,37 @@
 # DeFi AI Ops
 
-Public technical hub for DeFi research, AI-assisted market operations, and protocol-security simulation work.
+A practical workspace for DeFi research, AI-assisted market monitoring, protocol simulations, and small operations tools.
 
-## Repository Map
+## What’s Inside
 
-### Market Operations
+### `market-ops-lab/`
 
-- `market-ops-lab/` - Arcus / Robinhood Chain market research, collector scripts, and a local market discovery UI.
-- `market-ops-lab/collector/` - Python market/context collectors that write to local SQLite databases.
-- `market-ops-lab/app/` - Node-based local UI for public Arcus market discovery.
-- `market-ops-lab/docs/` - strategy, data-source, and architecture notes.
+Market research and monitoring work around Arcus, Robinhood Chain, and related crypto-market data sources.
 
-### Protocol Security
+Includes:
 
-- `protocol-security-lab/challenge-simulations/` - simulation notes, source snapshots, and local fork tooling for DeFi challenge analysis.
+- Python collectors for public market/context data
+- Paper-trade and signal-testing scripts
+- Local SQLite storage
+- A small local Arcus market UI
+- Research notes and planning docs
 
-### Consolidated References
+### `protocol-security-lab/`
 
-- `references/alpha-challenge/` - preserved Wintermute Alpha Challenge prompts and DKG monitor tooling from the older `Alpha-Challenge-C42` repo.
-- `references/gnosis-safe-stats/` - cleaned Gnosis Safe analytics scripts and docs from the older `gnosis-safe-stats` repo.
+Simulation-first protocol security research.
 
-### Local Archive
+Includes:
 
-- `archive/` - local-only material that should not be synced to GitHub. The archived CV work was moved here because it is personal rather than part of the DeFi/AI-ops project surface.
+- Local fork and Tenderly simulation notes
+- Source snapshots used for analysis
+- Scripts for contract-state review
+- Challenge research notes kept for learning and reference
 
-## Naming
+### `references/`
 
-The public repo is arranged by purpose:
+Useful older material kept as reference, including Safe analytics scripts and challenge-study tooling.
 
-- `market-ops-lab` for market data, monitoring, research automation, and local dashboards.
-- `protocol-security-lab` for defensive simulation, source review, and challenge research.
-- `references` for useful material consolidated from older repos.
-
-## Setup
+## Quick Start
 
 Install collector dependencies:
 
@@ -59,20 +58,8 @@ npm start
 
 Then open `http://localhost:4173`.
 
-## Secrets Policy
+## Security
 
-Do not commit API keys, wallet keys, seed phrases, `.env` files, SQLite databases, generated build output, or personal documents. Local credential files belong in ignored `secrets/` folders. Copy examples from `*.env.example` files and fill them locally.
+This repo is for research and local tooling. Do not commit API keys, wallet keys, seed phrases, `.env` files, SQLite databases, generated build output, or personal documents.
 
-## Sync Checklist
-
-Before pushing to GitHub:
-
-1. Run `git status --short`.
-2. Confirm only source, docs, examples, and requirements are staged.
-3. Run the secret scan command from `SECURITY.md`.
-4. Commit with a clear message.
-5. Push to the configured GitHub remote.
-
-## GitHub Profile Strategy
-
-This repository is intended to be the main public technical hub for the account. Older one-off, training, empty, or fork-only repositories can be archived once their useful material has been consolidated here.
+Use the `*.env.example` files as templates and keep real values locally only.
