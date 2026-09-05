@@ -1,8 +1,8 @@
-# Robinhood Ops
+# Market Ops Lab
 
-Research and planning folder for turning the earlier Engine Asymmetry idea into a Robinhood Chain / Arcus-focused AI trading operations project.
+Research and planning workspace for AI-assisted market operations across Arcus, Robinhood Chain, and adjacent crypto-market data sources.
 
-Status: discussion packet, not an executable trading system.
+Status: research and monitoring infrastructure, not an executable trading system.
 Date: 2026-07-26
 
 ## Project Areas
@@ -25,7 +25,7 @@ Date: 2026-07-26
 
 ## Current Take
 
-The strongest version of the idea is not "AI places trades directly." It is an AI-assisted market operations engine that collects live Arcus market/account/order data, builds structured memory, detects asymmetries, explains why they may exist, and only later graduates into controlled execution on testnet.
+The strongest version of the idea is not "AI places trades directly." It is an AI-assisted market operations engine that collects market/context data, builds structured memory, detects asymmetries, explains why they may exist, and only later graduates into controlled execution on testnet.
 
 That keeps the project close to the original Engine Asymmetry framing: AI-assisted research, blockchain analytics, workflow automation, structured data collection, SQLite, and graph-style knowledge representation.
 
@@ -39,7 +39,7 @@ That keeps the project close to the original Engine Asymmetry framing: AI-assist
 ## Collector Quick Start
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/Robinhood_ops
+cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r collector/requirements.txt
@@ -61,7 +61,7 @@ Never commit real API keys, wallet keys, or private account data.
 ## Local Market UI
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/Robinhood_ops/app
+cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab/app
 npm install
 npm start
 ```

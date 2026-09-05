@@ -1,7 +1,8 @@
-# 0xFlorent Challenge Simulation Notes
+# Protocol Security Challenge Simulations
 
-This folder is for simulation only. The script refuses to send transactions to
-Ethereum mainnet unless `ALLOW_MAINNET=1` is set.
+This folder is for defensive protocol-security research and simulation only.
+Scripts are intended for local forks, Tenderly virtual networks, and historical
+analysis. They should not be treated as live transaction playbooks.
 
 ## Contents
 
@@ -38,16 +39,16 @@ Use a Tenderly vnet RPC:
 
 ```bash
 export TENDERLY_RPC_URL="https://..."
-chmod +x aiops/challenge/simulate.sh
-aiops/challenge/simulate.sh state
+chmod +x protocol-security-lab/challenge-simulations/simulate.sh
+protocol-security-lab/challenge-simulations/simulate.sh state
 ```
 
 Or use a local Anvil fork:
 
 ```bash
 anvil --fork-url https://ethereum-rpc.publicnode.com
-chmod +x aiops/challenge/simulate.sh
-aiops/challenge/simulate.sh state
+chmod +x protocol-security-lab/challenge-simulations/simulate.sh
+protocol-security-lab/challenge-simulations/simulate.sh state
 ```
 
 ## Safety
@@ -56,21 +57,23 @@ aiops/challenge/simulate.sh state
 - Do not store RPC keys, Tenderly access keys, private keys, or wallet seed phrases in this folder.
 - Re-check live state before attempting to reproduce any historical simulation manually.
 
-## Where I Would Start
+## Research Notes
 
-Start with open bounty quest 4:
+The notes below capture historical simulation paths that were useful for
+understanding contract state, accounting edges, and governance gates.
 
-1. Buy `Ask` from the steward at its current price.
-2. Claim bounty quest `4`.
+### Bounty Quest 4
 
-Reason: it is the simplest live open path. Current state showed `Ask.price() =
+Simulation explored buying `Ask` from the steward and claiming bounty quest `4`.
+
+Observed state showed `Ask.price() =
 0.01 ETH`, `Ask.ownerOf(1) = steward`, `Bounties.wonBy(4) = 0x0`, and the bounty
 contract still held enough ETH for three rewards.
 
 Simulation:
 
 ```bash
-TENDERLY_RPC_URL="$TENDERLY_RPC_URL" aiops/challenge/simulate.sh ask-q4
+TENDERLY_RPC_URL="$TENDERLY_RPC_URL" protocol-security-lab/challenge-simulations/simulate.sh ask-q4
 ```
 
 Observed fork result:
@@ -83,14 +86,14 @@ Bounties.wonBy(4) = 0x3070f20f86fDa706Ac380F5060D256028a46eC29
 Bounties balance moved from 0.0075 ETH to 0.005 ETH
 ```
 
-## Second Path
+### Bounty Quest 9
 
-Open bounty quest 9 requires holding at least two Fork editions.
+This path requires holding at least two Fork editions.
 
 Simulation:
 
 ```bash
-TENDERLY_RPC_URL="$TENDERLY_RPC_URL" aiops/challenge/simulate.sh fork-q9
+TENDERLY_RPC_URL="$TENDERLY_RPC_URL" protocol-security-lab/challenge-simulations/simulate.sh fork-q9
 ```
 
 This is not profitable by itself. It spends the current Fork mint price plus the
@@ -111,7 +114,7 @@ Bounties balance moved from 0.0075 ETH to 0.005 ETH
 Do not run quest 4 and quest 9 from the same address if the objective is claiming
 both bounties. `Bounties.claimed(address)` allows only one reward per address.
 
-## Art Renderer Control Path
+### Art Renderer Control Path
 
 `Art.endorse(candidate)` can adopt a renderer when both gates are true:
 
@@ -123,7 +126,7 @@ Fresh-fork simulation at block `25874289` showed this path works from
 `0x3070f20f86fda706ac380f5060d256028a46ec29`:
 
 ```bash
-TENDERLY_RPC_URL="$TENDERLY_RPC_URL" aiops/challenge/simulate.sh art-control
+TENDERLY_RPC_URL="$TENDERLY_RPC_URL" protocol-security-lab/challenge-simulations/simulate.sh art-control
 ```
 
 Observed result:
@@ -139,136 +142,17 @@ Lineage.ownerOf(1) = 0x3070f20f86fDa706Ac380F5060D256028a46eC29
 Art.renderer() = 0x3070f20f86fDa706Ac380F5060D256028a46eC29
 ```
 
-This proves art governance control. Setting the renderer to an EOA proves state
-control, but for a cleaner public win, deploy a tiny renderer contract first and
-endorse that contract address instead. The renderer candidate should implement
-the expected `render(address piece, uint256 id)` interface used by `Art`.
-Use `RendererProof.sol` in this folder as a minimal candidate contract.
+This demonstrated renderer-governance control in a forked environment.
+`RendererProof.sol` is kept as a minimal renderer interface example for review.
 
-## Bequeath Path
+### Bequeath Path
 
 Open bounty quest 2 requires holding Bequeath while not being the steward.
 Current state showed Bequeath is still held by the steward. Public `claim()` is
 time-locked until `2027-02-28 20:20:59 UTC`, unless the holder moves it and
 resets `lastMove`.
 
-Simulation:
-
-```bash
-TENDERLY_RPC_URL="$TENDERLY_RPC_URL" aiops/challenge/simulate.sh bequeath-q2
-```
-
-## Etherscan Write Calls To Replicate A Successful Simulation
-
-These are the direct write functions a normal wallet can trigger on Etherscan.
-Only use them after confirming live state has not changed.
-
-### Claim Ask Bounty Quest 4
-
-Contract: `Ask` at `0xa0096d95daaa3cf19091c0f0627b3913c2e417ae`
-
-Function: `buy(uint256 newPrice)`
-
-Inputs:
-
-```text
-newPrice = 10000000000000000
-msg.value = current Ask.price(), currently 10000000000000000 wei if unchanged
-```
-
-Then:
-
-Contract: `Bounties` at `0xAAB498e3974F7543724602604f4EC6c44867FC72`
-
-Function: `claim(uint8 q)`
-
-Inputs:
-
-```text
-q = 4
-```
-
-### Claim Fork Collector Bounty Quest 9
-
-Contract: `Fork` at `0x4f33e5aa6d6c83e0bd32887b3a65a6d26e28b57b`
-
-Function: `mint()`
-
-Call once with `msg.value = current Fork.price()`, then call again with the new
-`Fork.price()` after the first mint. Then call:
-
-Contract: `Bounties` at `0xAAB498e3974F7543724602604f4EC6c44867FC72`
-
-Function: `claim(uint8 q)`
-
-Inputs:
-
-```text
-q = 9
-```
-
-### Take Renderer Governance Control
-
-First deploy a renderer candidate, for example
-`aiops/challenge/RendererProof.sol`, with constructor argument:
-
-```text
-claimant_ = 0x3070f20f86fda706ac380f5060d256028a46ec29
-```
-
-Contract: `Fork` at `0x4f33e5aa6d6c83e0bd32887b3a65a6d26e28b57b`
-
-Function: `mint()`
-
-Call repeatedly until your wallet has strict majority voting weight:
-
-```text
-your Fork balance * 2 > Fork.totalSupply()
-msg.value = current Fork.price() for each mint
-```
-
-At the observed state, two mints were enough because only one Fork existed before
-the simulation.
-
-Contract: `Lineage` at `0x7392197b936a0b3d3e3734a48aca3c9b2682098f`
-
-Function: `buy()`
-
-Repeat until:
-
-```text
-Art.volume() >= 10000000000000000000
-msg.value = current Lineage.price() for each buy
-```
-
-At the observed state, 25 Lineage buys after the two Fork mints reached the
-volume gate. Re-read `Lineage.price()` before every buy, because the price moves
-after each call.
-
-Contract: `Art` at `0xa01a0386b0fb47296C52d5d2492Fbe01BfDa85B8`
-
-Functions:
-
-```text
-propose(address candidate)
-endorse(address candidate)
-```
-
-Use your deployed renderer contract as `candidate`. If the only goal is proving
-state control in a simulation, the wallet address itself can be used as
-`candidate`, as in the fork run above.
-
-### Bequeath Bounty Quest 2
-
-Contract: `Bequeath` at `0x4332bd627c7712718d5373ce9d6c6bced6338a0e`
-
-Function: `claim()`
-
-This is only callable after `lastMove + 182 days`. Current observed unlock was
-`2027-02-28 20:20:59 UTC`. If the current holder calls `bequeath(address to)`,
-that timer resets.
-
-Then call `Bounties.claim(2)`.
+Simulation entry points remain in `simulate.sh` for reproducible local analysis.
 
 ## Extraction Surface Summary
 

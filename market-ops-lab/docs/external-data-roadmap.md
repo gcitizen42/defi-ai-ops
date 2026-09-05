@@ -42,7 +42,7 @@ python3 collector/coingecko_context.py --history-days 1 --store-assets
 API key is optional at prototype stage. If needed, store it in:
 
 ```text
-Robinhood_ops/secrets/coingecko.env
+market-ops-lab/secrets/coingecko.env
 ```
 
 First connector test:
@@ -58,7 +58,7 @@ Practical recommendation: create a free CoinGecko Demo API key before relying on
 COINGECKO_API_KEY=
 ```
 
-from `Robinhood_ops/secrets/coingecko.env`.
+from `market-ops-lab/secrets/coingecko.env`.
 
 ### 2. Public News Feeds
 

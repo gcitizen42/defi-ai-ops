@@ -1,4 +1,4 @@
-# Project Concept: Robinhood Ops / Trading Control Center
+# Project Concept: Market Ops Lab / Trading Control Center
 
 ## Working Thesis
 
@@ -81,7 +81,7 @@ Phase 1 should be a read-only research and planning engine:
 ## Suggested Folder Structure For The Future Build
 
 ```text
-Robinhood_ops/
+market-ops-lab/
   docs/
   secrets/
   src/
@@ -113,7 +113,7 @@ Robinhood_ops/
 
 Build a testnet-only data collector:
 
-- load API key from `Robinhood_ops/secrets/arcus.env`;
+- load API key from `market-ops-lab/secrets/arcus.env`;
 - connect to Arcus testnet WebSocket;
 - subscribe to selected market data channels;
 - store raw messages in SQLite;

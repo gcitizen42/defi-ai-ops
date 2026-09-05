@@ -69,7 +69,7 @@ Operational plan:
 Suggested local secret file:
 
 ```text
-Robinhood_ops/secrets/hyperliquid.env
+market-ops-lab/secrets/hyperliquid.env
 ```
 
 Fields:

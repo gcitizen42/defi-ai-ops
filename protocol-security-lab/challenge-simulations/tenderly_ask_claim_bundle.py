@@ -10,7 +10,7 @@ ENV_FILE = Path("/Users/Citizen42/Desktop/TdaoUtils/AI-ops/Tenderly_simulations/
 USER = "0x3070f20f86fda706ac380f5060d256028a46ec29"
 ASK = "0xa0096d95daaa3cf19091c0f0627b3913c2e417ae"
 BOUNTY = "0xAAB498e3974F7543724602604f4EC6c44867FC72"
-OUT = Path("aiops/challenge/tenderly-ask-claim-result.json")
+OUT = Path("protocol-security-lab/challenge-simulations/tenderly-ask-claim-result.json")
 
 
 def read_env():

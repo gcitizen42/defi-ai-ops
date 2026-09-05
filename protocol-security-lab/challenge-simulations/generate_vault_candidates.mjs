@@ -53,5 +53,5 @@ for (const a of addresses) {
   }
 }
 
-fs.writeFileSync("aiops/challenge/vault-candidates.generated.txt", [...out].join("\n") + "\n");
+fs.writeFileSync("protocol-security-lab/challenge-simulations/vault-candidates.generated.txt", [...out].join("\n") + "\n");
 console.log(`wrote ${out.size} candidates`);

@@ -13,7 +13,7 @@ Configured wallet:
 Local config:
 
 ```text
-Robinhood_ops/secrets/zerion.env
+market-ops-lab/secrets/zerion.env
 ```
 
 Fill in:
@@ -37,7 +37,7 @@ Zerion is for wallet state, not order-book prediction:
 ## Command
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/Robinhood_ops
+cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
 source .venv/bin/activate
 python3 collector/zerion_context.py
 ```

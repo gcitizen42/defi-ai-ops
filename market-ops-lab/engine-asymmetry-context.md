@@ -25,7 +25,7 @@ Based only on the local repo evidence, Engine Asymmetry was about building an AI
 
 The "asymmetry" part should be treated as the search for informational, structural, liquidity, timing, or operational imbalances that are visible in market/on-chain data but not obvious from a UI.
 
-## What This Means For Robinhood Ops
+## What This Means For Market Ops Lab
 
 The new project should start as a research and monitoring system:
 

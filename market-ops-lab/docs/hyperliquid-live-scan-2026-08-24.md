@@ -5,7 +5,7 @@ Date: 2026-08-24
 ## Command
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/Robinhood_ops
+cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
 source .venv/bin/activate
 python3 collector/hyperliquid_context.py --limit 12 --min-volume-usd 3000000 --lookback-minutes 180 --trade-limit 100 --levels 20
 ```

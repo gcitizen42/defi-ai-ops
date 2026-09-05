@@ -3,7 +3,7 @@
 Full raw fork output:
 
 ```text
-aiops/challenge/function-sweep.md
+protocol-security-lab/challenge-simulations/function-sweep.md
 ```
 
 Fork block:

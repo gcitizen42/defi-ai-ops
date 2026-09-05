@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SEAL="${SEAL:-0x68f7c7cd0e11695dd28fccbc84dd8e04f016cf5e3d379d518aba6059d429c5c9}"
-CANDIDATES="${1:-aiops/challenge/vault-candidates.txt}"
+CANDIDATES="${1:-protocol-security-lab/challenge-simulations/vault-candidates.txt}"
 
 if [[ ! -f "$CANDIDATES" ]]; then
   echo "missing candidates file: $CANDIDATES" >&2

@@ -118,5 +118,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Robinhood Ops Arcus base app running at http://localhost:${port}`);
+  console.log(`Market Ops Lab Arcus base app running at http://localhost:${port}`);
 });

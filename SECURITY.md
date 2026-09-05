@@ -16,7 +16,7 @@ This workspace may interact with trading APIs, wallet analytics APIs, RPC provid
 Use ignored local folders such as:
 
 ```text
-Robinhood_ops/secrets/
+market-ops-lab/secrets/
 ```
 
 Copy the relevant example file into that folder and fill it locally.

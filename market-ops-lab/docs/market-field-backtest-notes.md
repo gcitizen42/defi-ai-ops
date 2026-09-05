@@ -104,7 +104,7 @@ Immediate improvements:
 ## Command
 
 ```bash
-cd /Users/Citizen42/Documents/DeFi-dApps/Robinhood_ops
+cd /Users/Citizen42/Documents/DeFi-dApps/market-ops-lab
 source .venv/bin/activate
 python3 collector/spot_market_field_backtest.py --tickers COIN,MSTR,RKLB,AMD,NVDA,AAPL,SPY,QQQ --horizon 60 --target-pct 0.5 --stop-pct 0.35
 ```

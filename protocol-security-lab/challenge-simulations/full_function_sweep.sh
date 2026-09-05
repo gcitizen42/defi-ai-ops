@@ -4,7 +4,7 @@ set -u
 RPC_URL="${TENDERLY_RPC_URL:-${RPC_URL:-http://127.0.0.1:8545}}"
 USER_ADDR="${USER_ADDR:-0x3070f20f86fda706ac380f5060d256028a46ec29}"
 STEWARD="0x3567dBd98fe316408C7ebAB6Ac6B12a0F27A7ed5"
-OUT="${OUT:-aiops/challenge/function-sweep.md}"
+OUT="${OUT:-protocol-security-lab/challenge-simulations/function-sweep.md}"
 
 ART="0xa01a0386b0fb47296C52d5d2492Fbe01BfDa85B8"
 BOUNTY="0xAAB498e3974F7543724602604f4EC6c44867FC72"

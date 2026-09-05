@@ -1,35 +1,43 @@
-# DeFi dApps and AI Ops Workspace
+# DeFi AI Ops
 
-Organized workspace for DeFi research, market-operations prototypes, and simulation tooling.
+Public technical hub for DeFi research, AI-assisted market operations, and protocol-security simulation work.
 
 ## Repository Map
 
-### AI Ops / DeFi Research
-
-- `aiops/challenge/` - 0xFlorent challenge simulation notes, source snapshots, scripts, and renderer proof contract.
-
 ### Market Operations
 
-- `Robinhood_ops/` - Arcus / Robinhood Chain market research, collector scripts, and a local market discovery UI.
-- `Robinhood_ops/collector/` - Python market/context collectors that write to local SQLite databases.
-- `Robinhood_ops/app/` - Node-based local UI for public Arcus market discovery.
-- `Robinhood_ops/docs/` - strategy, data-source, and architecture notes.
+- `market-ops-lab/` - Arcus / Robinhood Chain market research, collector scripts, and a local market discovery UI.
+- `market-ops-lab/collector/` - Python market/context collectors that write to local SQLite databases.
+- `market-ops-lab/app/` - Node-based local UI for public Arcus market discovery.
+- `market-ops-lab/docs/` - strategy, data-source, and architecture notes.
+
+### Protocol Security
+
+- `protocol-security-lab/challenge-simulations/` - simulation notes, source snapshots, and local fork tooling for DeFi challenge analysis.
+
+### Consolidated References
+
+- `references/alpha-challenge/` - preserved Wintermute Alpha Challenge prompts and DKG monitor tooling from the older `Alpha-Challenge-C42` repo.
+- `references/gnosis-safe-stats/` - cleaned Gnosis Safe analytics scripts and docs from the older `gnosis-safe-stats` repo.
 
 ### Local Archive
 
 - `archive/` - local-only material that should not be synced to GitHub. The archived CV work was moved here because it is personal rather than part of the DeFi/AI-ops project surface.
 
-### Consolidated References
+## Naming
 
-- `references/alpha-challenge/` - preserved Wintermute Alpha Challenge prompts and the DKG monitor tooling from the older `Alpha-Challenge-C42` repo.
-- `references/gnosis-safe-stats/` - cleaned Gnosis Safe analytics scripts and docs from the older `gnosis-safe-stats` repo.
+The public repo is arranged by purpose:
+
+- `market-ops-lab` for market data, monitoring, research automation, and local dashboards.
+- `protocol-security-lab` for defensive simulation, source review, and challenge research.
+- `references` for useful material consolidated from older repos.
 
 ## Setup
 
 Install collector dependencies:
 
 ```bash
-cd Robinhood_ops
+cd market-ops-lab
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r collector/requirements.txt
@@ -44,7 +52,7 @@ python3 collector/arcus_collector.py --once --rest-only
 Run the local market UI:
 
 ```bash
-cd Robinhood_ops/app
+cd market-ops-lab/app
 npm install
 npm start
 ```
