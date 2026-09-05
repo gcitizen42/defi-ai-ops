@@ -30,6 +30,7 @@ yarn-error.log*
 **/data/*.db
 **/data/*.db-*
 **/logs/
+**/reports/
 *.log
 
 # Solidity / Foundry generated output

@@ -1,0 +1,17 @@
+{
+  "name": "onchain-ops-toolkit",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "safe-module-inspector",
+    "threshold-fee-monitor",
+    "tbtc-wallet-registry"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

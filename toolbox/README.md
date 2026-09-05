@@ -40,6 +40,35 @@ python3 collector/paper_trade_watch.py --market BTC-USD --side long --notional 1
 
 ## On-Chain Operations
 
+Install and verify the TypeScript toolkit:
+
+```bash
+cd onchain-ops-toolkit
+npm install
+npm run build
+npm test
+```
+
+Inspect modules enabled on Safe accounts:
+
+```bash
+npm run start --workspace safe-module-inspector -- --owner 0xYOUR_OWNER_ADDRESS --chains ethereum,gnosis
+```
+
+Summarize tBTC redemption treasury fees:
+
+```bash
+npm run start --workspace threshold-fee-monitor -- 2025-01-01 2026-01-01
+```
+
+List live wallets registered by the tBTC Bridge:
+
+```bash
+npm run start --workspace tbtc-wallet-registry
+```
+
+See the [on-chain toolkit guide](../onchain-ops-toolkit/README.md) for configuration.
+
 Export Safe multisig history:
 
 ```bash
@@ -70,6 +99,7 @@ The simulator uses a local ignored credentials file and does not broadcast the t
 | --- | --- |
 | Market collectors | Python 3.11+, packages in `market-ops-lab/collector/requirements.txt` |
 | Safe analytics | Python 3.10+, packages in `references/gnosis-safe-stats/requirements.txt` |
+| On-chain operations | Node.js 20+, packages locked by `onchain-ops-toolkit/package-lock.json`; archive RPC for historical wallet scans |
 | Tenderly simulator | Python 3.11+, Tenderly simulation credentials; Foundry `cast` for encoded helper inputs |
 
 All databases, exports, keys, and local environment files stay outside git.
