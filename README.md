@@ -25,6 +25,7 @@ See the [toolbox guide](toolbox/README.md) for commands and requirements.
 - [`market-ops-lab/`](market-ops-lab/) - collectors, analysis models, paper simulations, and a local market UI.
 - [`protocol-security-lab/`](protocol-security-lab/) - simulation-first smart-contract security research.
 - [`onchain-ops-toolkit/`](onchain-ops-toolkit/) - read-only Safe and Threshold Network operations utilities.
+- [`dao-treehouse/`](dao-treehouse/) - product design and case-study data for mapping DAO contract control and preparing reviewed governance actions.
 - [`references/`](references/) - older work kept for learning, including Safe analytics and Alpha Challenge material.
 
 ## Quick Start

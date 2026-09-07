@@ -1,0 +1,1004 @@
+{
+  "$schema": "../../schemas/project-manifest.schema.json",
+  "schemaVersion": "0.1.0",
+  "project": {
+    "id": "threshold-tbtc-v2",
+    "name": "Threshold tBTC v2",
+    "description": "Partial control-map seed for key Ethereum and Arbitrum One governance paths.",
+    "repository": {
+      "url": "https://github.com/threshold-network/tbtc-v2",
+      "defaultBranch": "main",
+      "revision": "502cd3982b5b2dc3ff0e1e6085a24502f78cfe26"
+    }
+  },
+  "sources": [
+    {
+      "id": "tbtc-repository-main",
+      "kind": "github-repository",
+      "uri": "https://github.com/threshold-network/tbtc-v2",
+      "revision": "502cd3982b5b2dc3ff0e1e6085a24502f78cfe26",
+      "observedAt": "2026-09-07T20:05:45Z"
+    },
+    {
+      "id": "legacy-tbtc-registry",
+      "kind": "local-registry",
+      "uri": "tbtc-governance-ops/registry/tbtc-contracts.json",
+      "revision": "unversioned-local-snapshot",
+      "observedAt": "2026-09-07T20:05:45Z"
+    },
+    {
+      "id": "ethereum-live",
+      "kind": "rpc",
+      "uri": "eip155:1",
+      "observedAt": "2026-09-07T20:05:45Z"
+    },
+    {
+      "id": "arbitrum-live",
+      "kind": "rpc",
+      "uri": "eip155:42161",
+      "observedAt": "2026-09-07T20:05:45Z"
+    }
+  ],
+  "networks": [
+    {
+      "chainId": 1,
+      "name": "Ethereum",
+      "observedAtBlock": 25927757
+    },
+    {
+      "chainId": 42161,
+      "name": "Arbitrum One",
+      "observedAtBlock": 502787406
+    }
+  ],
+  "nodes": [
+    {
+      "id": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "kind": "safe",
+      "label": "Threshold Governance Safe",
+      "chainId": 1,
+      "address": "0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "confidence": "verified",
+      "attributes": {
+        "version": "1.3.0",
+        "threshold": 6,
+        "ownerCount": 9,
+        "owners": [
+          "0xFe45baf0F18c207152A807c1b05926583CFE2e4b",
+          "0x49848f38D31e2b150190E44a4fE056a239EA1aad",
+          "0x09BA3869189E78814659a611e7eFe36BED25cE94",
+          "0x3c7832b15407D1BD8aE03C41D2A849006A0cD905",
+          "0x452db6Ab19af268aE6Dc981fb7cd6077c124923f",
+          "0x76C6CEf8ae443fA7404dD60dabc18B9158e37A75",
+          "0x9C20993E98aa5A6BAD8AD0FC42C2f4cc3008096f",
+          "0xeceC507477b969FC05053fB044619b723D458E8e",
+          "0x1778f7EC9eE1d6Cc72FA4e94189CfeF0DAd48b4A"
+        ],
+        "modules": []
+      },
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "getOwners(), getThreshold(), VERSION(), getModulesPaginated()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "kind": "timelock",
+      "label": "Threshold Ethereum Timelock",
+      "chainId": 1,
+      "address": "0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "confidence": "corroborated",
+      "attributes": {
+        "minimumDelaySeconds": 86400,
+        "selfAdministered": true,
+        "openExecutor": false
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/Timelock.json"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "getMinDelay(), hasRole()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "kind": "proxy-admin",
+      "label": "Threshold Ethereum ProxyAdmin",
+      "chainId": 1,
+      "address": "0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt and eth_call",
+          "locator": "eip1967.proxy.admin, ProxyAdmin.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+      "kind": "contract",
+      "label": "TBTC",
+      "chainId": 1,
+      "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+      "confidence": "corroborated",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/TBTC.json"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x9C070027cdC9dc8F82416B2e5314E11DFb4FE3CD",
+      "kind": "contract",
+      "label": "TBTCVault",
+      "chainId": 1,
+      "address": "0x9C070027cdC9dc8F82416B2e5314E11DFb4FE3CD",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x65Fbae61ad2C8836fFbFB502A0dA41b0789D9Fc6",
+      "kind": "contract",
+      "label": "Bank",
+      "chainId": 1,
+      "address": "0x65Fbae61ad2C8836fFbFB502A0dA41b0789D9Fc6",
+      "confidence": "corroborated",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/Bank.json"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf",
+      "kind": "contract",
+      "label": "BridgeGovernance",
+      "chainId": 1,
+      "address": "0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf",
+      "confidence": "corroborated",
+      "attributes": {
+        "governanceDelaySeconds": 172800
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/BridgeGovernance.json"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "owner(), Bridge.governance()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x5e4861a80B55f035D899f66772117F00FA0E8e7B",
+      "kind": "proxy",
+      "label": "Bridge",
+      "chainId": 1,
+      "address": "0x5e4861a80B55f035D899f66772117F00FA0E8e7B",
+      "confidence": "corroborated",
+      "attributes": {
+        "proxyPattern": "EIP-1967"
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/Bridge.json"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x7D43c9259bAe6e594EC5C2fc1121ad67eD601677",
+      "kind": "implementation",
+      "label": "Bridge current implementation",
+      "chainId": 1,
+      "address": "0x7D43c9259bAe6e594EC5C2fc1121ad67eD601677",
+      "confidence": "corroborated",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "solidity/deployments/mainnet/Bridge.json#implementation"
+        },
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x0184739C32edc3471D3e4860c8E39a5f3Ff85A45",
+      "kind": "proxy",
+      "label": "RebateStaking",
+      "chainId": 1,
+      "address": "0x0184739C32edc3471D3e4860c8E39a5f3Ff85A45",
+      "confidence": "verified",
+      "attributes": {
+        "proxyPattern": "EIP-1967"
+      },
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call and eth_getStorageAt",
+          "locator": "owner(), eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0x25aAF04229f77A9AE80430b3C89E3455Ab2ec22F",
+      "kind": "implementation",
+      "label": "RebateStaking current implementation",
+      "chainId": 1,
+      "address": "0x25aAF04229f77A9AE80430b3C89E3455Ab2ec22F",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0xB8dF0A949aC45ff8f401553A1dcb742Feb38E6D3",
+      "kind": "proxy",
+      "label": "RedemptionWatchtower",
+      "chainId": 1,
+      "address": "0xB8dF0A949aC45ff8f401553A1dcb742Feb38E6D3",
+      "confidence": "verified",
+      "attributes": {
+        "proxyPattern": "EIP-1967"
+      },
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call and eth_getStorageAt",
+          "locator": "owner(), eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:1:0xbfD04E3928923aD8C86256B9A8F64eBD01Cf1dAf",
+      "kind": "implementation",
+      "label": "RedemptionWatchtower current implementation",
+      "chainId": 1,
+      "address": "0xbfD04E3928923aD8C86256B9A8F64eBD01Cf1dAf",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "kind": "safe",
+      "label": "Threshold Governance Safe",
+      "chainId": 42161,
+      "address": "0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "confidence": "verified",
+      "attributes": {
+        "version": "1.3.0",
+        "threshold": 6,
+        "ownerCount": 9,
+        "owners": [
+          "0x2844a0d6442034D3027A05635F4224d966C54fD7",
+          "0x49848f38D31e2b150190E44a4fE056a239EA1aad",
+          "0x739730cCb2a34cc83D3e30645002C52bA4B06167",
+          "0x3c7832b15407D1BD8aE03C41D2A849006A0cD905",
+          "0xA6d76e990fE10C4b741ceb87590bE6cb23979a6e",
+          "0x76C6CEf8ae443fA7404dD60dabc18B9158e37A75",
+          "0x9C20993E98aa5A6BAD8AD0FC42C2f4cc3008096f",
+          "0xeceC507477b969FC05053fB044619b723D458E8e",
+          "0xe05808c1EFe0302b27Fc21F0E4a0f15e21e62e78"
+        ],
+        "modules": []
+      },
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "getOwners(), getThreshold(), VERSION(), getModulesPaginated()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "kind": "timelock",
+      "label": "Threshold Arbitrum Timelock",
+      "chainId": 42161,
+      "address": "0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "confidence": "corroborated",
+      "attributes": {
+        "minimumDelaySeconds": 86400,
+        "selfAdministered": true,
+        "openExecutor": false
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/Timelock.json"
+        },
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "getMinDelay(), hasRole()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x02612d20CC087670a959Bb12cA3c5fd56C8A3DB3",
+      "kind": "proxy-admin",
+      "label": "Threshold Arbitrum ProxyAdmin",
+      "chainId": 42161,
+      "address": "0x02612d20CC087670a959Bb12cA3c5fd56C8A3DB3",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt and eth_call",
+          "locator": "eip1967.proxy.admin, ProxyAdmin.owner()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "kind": "proxy",
+      "label": "ArbitrumTBTC",
+      "chainId": 42161,
+      "address": "0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "confidence": "corroborated",
+      "attributes": {
+        "proxyPattern": "EIP-1967"
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/ArbitrumTBTC.json"
+        },
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call and eth_getStorageAt",
+          "locator": "owner(), eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0xDa534b567099Ca481384133bC121D5843F681365",
+      "kind": "implementation",
+      "label": "ArbitrumTBTC current implementation",
+      "chainId": 42161,
+      "address": "0xDa534b567099Ca481384133bC121D5843F681365",
+      "confidence": "corroborated",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/ArbitrumTBTC.json#implementation"
+        },
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+      "kind": "proxy",
+      "label": "ArbitrumWormholeGateway",
+      "chainId": 42161,
+      "address": "0x1293a54e160D1cd7075487898d65266081A15458",
+      "confidence": "corroborated",
+      "attributes": {
+        "proxyPattern": "EIP-1967"
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/ArbitrumWormholeGateway.json"
+        },
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call and eth_getStorageAt",
+          "locator": "owner(), eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0x7Ff02bb686658f2d55f28fDF45286f9499beb9a5",
+      "kind": "implementation",
+      "label": "ArbitrumWormholeGateway live implementation",
+      "chainId": 42161,
+      "address": "0x7Ff02bb686658f2d55f28fDF45286f9499beb9a5",
+      "confidence": "verified",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "eip155:42161:0xaaC423eDC4E3ee9ef81517e8093d52737165b71F",
+      "kind": "implementation",
+      "label": "ArbitrumWormholeGateway repository implementation",
+      "chainId": 42161,
+      "address": "0xaaC423eDC4E3ee9ef81517e8093d52737165b71F",
+      "confidence": "conflict",
+      "attributes": {},
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/ArbitrumWormholeGateway.json#implementation"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "eth-safe-owns-bank",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x65Fbae61ad2C8836fFbFB502A0dA41b0789D9Fc6",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "Bank.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-owns-bridge-governance",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "BridgeGovernance.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-bridge-governance-governs-bridge",
+      "from": "eip155:1:0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf",
+      "to": "eip155:1:0x5e4861a80B55f035D899f66772117F00FA0E8e7B",
+      "relationship": "GOVERNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "Bridge.governance()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-bridge-implementation",
+      "from": "eip155:1:0x7D43c9259bAe6e594EC5C2fc1121ad67eD601677",
+      "to": "eip155:1:0x5e4861a80B55f035D899f66772117F00FA0E8e7B",
+      "relationship": "IMPLEMENTS",
+      "confidence": "corroborated",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-owns-vault",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x9C070027cdC9dc8F82416B2e5314E11DFb4FE3CD",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "TBTCVault.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-vault-owns-tbtc",
+      "from": "eip155:1:0x9C070027cdC9dc8F82416B2e5314E11DFb4FE3CD",
+      "to": "eip155:1:0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "TBTC.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-owns-rebate-staking",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x0184739C32edc3471D3e4860c8E39a5f3Ff85A45",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "RebateStaking.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-rebate-staking-implementation",
+      "from": "eip155:1:0x25aAF04229f77A9AE80430b3C89E3455Ab2ec22F",
+      "to": "eip155:1:0x0184739C32edc3471D3e4860c8E39a5f3Ff85A45",
+      "relationship": "IMPLEMENTS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-owns-redemption-watchtower",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0xB8dF0A949aC45ff8f401553A1dcb742Feb38E6D3",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "RedemptionWatchtower.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-redemption-watchtower-implementation",
+      "from": "eip155:1:0xbfD04E3928923aD8C86256B9A8F64eBD01Cf1dAf",
+      "to": "eip155:1:0xB8dF0A949aC45ff8f401553A1dcb742Feb38E6D3",
+      "relationship": "IMPLEMENTS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-proposes-to-timelock",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "relationship": "PROPOSES_TO",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "hasRole(PROPOSER_ROLE, safe)",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-executes-for-timelock",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "relationship": "EXECUTES_FOR",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "hasRole(EXECUTOR_ROLE, safe)",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-safe-cancels-for-timelock",
+      "from": "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "relationship": "CANCELS_FOR",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "hasRole(CANCELLER_ROLE, safe)",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-timelock-self-admin",
+      "from": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "to": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "relationship": "ADMINISTERS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "hasRole(TIMELOCK_ADMIN_ROLE, timelock)",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-timelock-owns-proxy-admin",
+      "from": "eip155:1:0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "to": "eip155:1:0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_call",
+          "locator": "ProxyAdmin.owner()",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-proxy-admin-upgrades-bridge",
+      "from": "eip155:1:0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "to": "eip155:1:0x5e4861a80B55f035D899f66772117F00FA0E8e7B",
+      "relationship": "UPGRADES",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.admin",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-proxy-admin-upgrades-rebate-staking",
+      "from": "eip155:1:0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "to": "eip155:1:0x0184739C32edc3471D3e4860c8E39a5f3Ff85A45",
+      "relationship": "UPGRADES",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.admin",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "eth-proxy-admin-upgrades-redemption-watchtower",
+      "from": "eip155:1:0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706",
+      "to": "eip155:1:0xB8dF0A949aC45ff8f401553A1dcb742Feb38E6D3",
+      "relationship": "UPGRADES",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "ethereum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.admin",
+          "observedAtBlock": 25927757
+        }
+      ]
+    },
+    {
+      "id": "arb-safe-owns-tbtc",
+      "from": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:42161:0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "ArbitrumTBTC.owner()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-tbtc-implementation",
+      "from": "eip155:42161:0xDa534b567099Ca481384133bC121D5843F681365",
+      "to": "eip155:42161:0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "relationship": "IMPLEMENTS",
+      "confidence": "corroborated",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-safe-owns-wormhole-gateway",
+      "from": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "ArbitrumWormholeGateway.owner()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-wormhole-gateway-live-implementation",
+      "from": "eip155:42161:0x7Ff02bb686658f2d55f28fDF45286f9499beb9a5",
+      "to": "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+      "relationship": "IMPLEMENTS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.implementation",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-wormhole-gateway-reported-implementation",
+      "from": "eip155:42161:0xaaC423eDC4E3ee9ef81517e8093d52737165b71F",
+      "to": "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+      "relationship": "IMPLEMENTS",
+      "confidence": "conflict",
+      "attributes": {
+        "current": false
+      },
+      "evidence": [
+        {
+          "sourceId": "tbtc-repository-main",
+          "method": "deployment-artifact",
+          "locator": "cross-chain/arbitrum/deployments/arbitrumOne/ArbitrumWormholeGateway.json#implementation"
+        }
+      ]
+    },
+    {
+      "id": "arb-safe-proposes-to-timelock",
+      "from": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "relationship": "PROPOSES_TO",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "hasRole(PROPOSER_ROLE, safe)",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-safe-executes-for-timelock",
+      "from": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "relationship": "EXECUTES_FOR",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "hasRole(EXECUTOR_ROLE, safe)",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-safe-cancels-for-timelock",
+      "from": "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "to": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "relationship": "CANCELS_FOR",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "hasRole(CANCELLER_ROLE, safe)",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-timelock-self-admin",
+      "from": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "to": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "relationship": "ADMINISTERS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "hasRole(TIMELOCK_ADMIN_ROLE, timelock)",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-timelock-owns-proxy-admin",
+      "from": "eip155:42161:0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "to": "eip155:42161:0x02612d20CC087670a959Bb12cA3c5fd56C8A3DB3",
+      "relationship": "OWNS",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_call",
+          "locator": "ProxyAdmin.owner()",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-proxy-admin-upgrades-tbtc",
+      "from": "eip155:42161:0x02612d20CC087670a959Bb12cA3c5fd56C8A3DB3",
+      "to": "eip155:42161:0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "relationship": "UPGRADES",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.admin",
+          "observedAtBlock": 502787406
+        }
+      ]
+    },
+    {
+      "id": "arb-proxy-admin-upgrades-wormhole-gateway",
+      "from": "eip155:42161:0x02612d20CC087670a959Bb12cA3c5fd56C8A3DB3",
+      "to": "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+      "relationship": "UPGRADES",
+      "confidence": "verified",
+      "evidence": [
+        {
+          "sourceId": "arbitrum-live",
+          "method": "eth_getStorageAt",
+          "locator": "eip1967.proxy.admin",
+          "observedAtBlock": 502787406
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "arbitrum-gateway-implementation-drift",
+      "severity": "high",
+      "status": "open",
+      "title": "Arbitrum gateway implementation differs from repository artifact",
+      "summary": "The repository reports 0xaaC423eDC4E3ee9ef81517e8093d52737165b71F, while the live EIP-1967 implementation slot returned 0x7Ff02bb686658f2d55f28fDF45286f9499beb9a5. Resolve and verify source code before preparing any gateway action.",
+      "relatedNodeIds": [
+        "eip155:42161:0x1293a54e160D1cd7075487898d65266081A15458",
+        "eip155:42161:0x7Ff02bb686658f2d55f28fDF45286f9499beb9a5",
+        "eip155:42161:0xaaC423eDC4E3ee9ef81517e8093d52737165b71F"
+      ]
+    },
+    {
+      "id": "bridge-governance-registry-drift",
+      "severity": "medium",
+      "status": "open",
+      "title": "Legacy BridgeGovernance registry entry is stale",
+      "summary": "The legacy local registry lists 0xf286EA706A2512d2B9232FE7F8b2724880230b45. The current repository artifact and live Bridge.governance() both point to 0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf.",
+      "relatedNodeIds": [
+        "eip155:1:0xcBCFA3eb5E067173b262ACe62f9dD87f1D2Cc0Cf",
+        "eip155:1:0x5e4861a80B55f035D899f66772117F00FA0E8e7B"
+      ]
+    },
+    {
+      "id": "chain-specific-safe-rosters",
+      "severity": "info",
+      "status": "acknowledged",
+      "title": "Matching Safe addresses have different owner rosters",
+      "summary": "The Threshold Governance Safe is 6 of 9 on both networks, but Ethereum and Arbitrum One do not have identical owner lists. Address labels must always remain chain-specific.",
+      "relatedNodeIds": [
+        "eip155:1:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+        "eip155:42161:0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f"
+      ]
+    }
+  ]
+}
