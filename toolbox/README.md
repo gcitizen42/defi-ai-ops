@@ -55,6 +55,12 @@ Inspect modules enabled on Safe accounts:
 npm run start --workspace safe-module-inspector -- --owner 0xYOUR_OWNER_ADDRESS --chains ethereum,gnosis
 ```
 
+Build a checked Timelock role-rotation plan and Safe batches:
+
+```bash
+npm run start --workspace timelock-role-manager -- timelock-role-manager/config.json
+```
+
 Summarize tBTC redemption treasury fees:
 
 ```bash
@@ -99,7 +105,7 @@ The simulator uses a local ignored credentials file and does not broadcast the t
 | --- | --- |
 | Market collectors | Python 3.11+, packages in `market-ops-lab/collector/requirements.txt` |
 | Safe analytics | Python 3.10+, packages in `references/gnosis-safe-stats/requirements.txt` |
-| On-chain operations | Node.js 20+, packages locked by `onchain-ops-toolkit/package-lock.json`; archive RPC for historical wallet scans |
+| On-chain operations | Node.js 20+, packages locked by `onchain-ops-toolkit/package-lock.json`; archive RPC for historical and role scans |
 | Tenderly simulator | Python 3.11+, Tenderly simulation credentials; Foundry `cast` for encoded helper inputs |
 
 All databases, exports, keys, and local environment files stay outside git.

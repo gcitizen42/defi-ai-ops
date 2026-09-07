@@ -13,6 +13,7 @@ A practical toolbox for DeFi market research, on-chain analytics, protocol simul
 | [Paper-trade monitor](market-ops-lab/collector/paper_trade_watch.py) | Tests entries, targets, stops, spread, and slippage without placing trades. | Simulation only |
 | [Safe history exporter](references/gnosis-safe-stats/safe_history_rawdata.py) | Exports Safe multisig history to CSV with optional gas data. | Public data; optional RPC |
 | [Safe module inspector](onchain-ops-toolkit/safe-module-inspector/) | Inventories enabled Safe modules and flags patterns for manual review. | Public data; optional RPC |
+| [Timelock role manager](onchain-ops-toolkit/timelock-role-manager/) | Builds verified Safe batches for atomic Timelock role rotations. | Archive RPC; review and simulation required |
 | [Threshold fee monitor](onchain-ops-toolkit/threshold-fee-monitor/) | Totals tBTC redemption treasury fees by month and year. | Ethereum RPC |
 | [tBTC wallet registry](onchain-ops-toolkit/tbtc-wallet-registry/) | Lists registered tBTC wallets, state, age, and Bridge metadata. | Ethereum RPC |
 | [Tenderly simulator](protocol-security-lab/challenge-simulations/tenderly_simulate.py) | Runs a transaction against a Tenderly simulation project. | Simulation credentials required |

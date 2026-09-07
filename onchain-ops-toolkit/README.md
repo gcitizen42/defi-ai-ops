@@ -7,6 +7,7 @@ Read-only utilities for inspecting Safe accounts and Threshold Network activity.
 | Tool | Purpose |
 | --- | --- |
 | [Safe module inspector](safe-module-inspector/) | Finds Safes owned by an address and inventories enabled modules across supported EVM chains. |
+| [Timelock role manager](timelock-role-manager/) | Builds minimal, role-aware Safe batches for TimelockController rotations. |
 | [Threshold fee monitor](threshold-fee-monitor/) | Totals tBTC Bridge redemption treasury fees by month and year. |
 | [tBTC wallet registry](tbtc-wallet-registry/) | Lists registered tBTC wallets, their state, age, and on-chain metadata. |
 

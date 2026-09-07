@@ -31,6 +31,8 @@ yarn-error.log*
 **/data/*.db-*
 **/logs/
 **/reports/
+**/generated/
+onchain-ops-toolkit/timelock-role-manager/config.json
 *.log
 
 # Solidity / Foundry generated output

@@ -4,6 +4,7 @@
   "private": true,
   "workspaces": [
     "safe-module-inspector",
+    "timelock-role-manager",
     "threshold-fee-monitor",
     "tbtc-wallet-registry"
   ],

@@ -30,3 +30,14 @@ rg -n --hidden -g '!.git/**' -g '!**/.venv/**' -g '!**/data/**' -g '!**/secrets/
 ```
 
 Investigate every match before committing.
+
+## Governance Batches
+
+Treat generated Safe and Timelock batches as unsigned proposals, not approvals. Before proposing one:
+
+- confirm the chain, Safe, Timelock, role members, delay, salt, and operation ID
+- decode every grant and revoke payload
+- simulate the schedule and execute stages separately
+- have another reviewer compare the generated role diff with the intended roster
+
+Never include the schedule and execute calls in the same Safe transaction. The Timelock delay must remain enforceable.
