@@ -36,6 +36,15 @@ Generated files are written to `timelock-role-manager/generated/` and are ignore
 
 To rotate proposers, provide both `proposers` and `cancellers` in `roles`. Omitted role groups are preserved. Setting the zero address as an executor requires `"allowOpenExecutor": true`. Acknowledging an external admin requires `"allowExternalAdmin": true`.
 
+## Threshold Deployments
+
+| Network | Timelock | Governance Safe | Delay |
+| --- | --- | --- | --- |
+| Ethereum mainnet | [`0x92f2...4913D`](https://etherscan.io/address/0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D) | `0x9F6e...C2F5f` | 24 hours |
+| Arbitrum One | [`0x6614...114e`](https://arbiscan.io/address/0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e) | `0x9F6e...C2F5f` | 24 hours |
+
+The complete addresses, deployment blocks, and deployment transactions are in [`deployments/threshold.json`](deployments/threshold.json). They were cross-checked against the local deployment artifacts and live chain state on 2026-09-07. The manager still verifies every value when it runs.
+
 ## Required Review
 
 Check `plan.json`, decode every payload, and simulate both stages before proposing them. The execute batch can only succeed after the on-chain minimum delay.

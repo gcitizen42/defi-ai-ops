@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-09-07",
+  "deployments": [
+    {
+      "id": "threshold-ethereum-mainnet",
+      "network": "Ethereum mainnet",
+      "chainId": 1,
+      "timelockAddress": "0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D",
+      "governanceSafeAddress": "0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "deploymentBlock": 21392558,
+      "deploymentTransaction": "0xa2858c2fc415365c3774d56d5b1def3096ac784e44e7809617dbf3161272e974",
+      "expectedMinDelaySeconds": 86400,
+      "explorerUrl": "https://etherscan.io/address/0x92f2d8b72a7F6a551Be60b9aa4194248E9B4913D"
+    },
+    {
+      "id": "threshold-arbitrum-one",
+      "network": "Arbitrum One",
+      "chainId": 42161,
+      "timelockAddress": "0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e",
+      "governanceSafeAddress": "0x9F6e831c8F8939DC0C830C6e492e7cEf4f9C2F5f",
+      "deploymentBlock": 338910585,
+      "deploymentTransaction": "0xe5f80c6cb2c54183b9c3b62be5319cbb705bc9c8484227685b8e092d6faba167",
+      "expectedMinDelaySeconds": 86400,
+      "explorerUrl": "https://arbiscan.io/address/0x6614Ee0374A9EaD7cff8D6929829c4B2B035114e"
+    }
+  ]
+}
